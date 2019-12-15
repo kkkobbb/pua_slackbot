@@ -16,6 +16,6 @@ def reply_test(message):
     text = message.body["text"]
     username = get_username(message)
     line_msg = f" from {username}\n{text}"
-    response = plugins.send_line.send_line(line_msg, LINE_NOTIFY_TOKEN)
-    message.send(response)
+    status = plugins.send_line.send_line(line_msg, LINE_NOTIFY_TOKEN)
+    message.send(f"status: {status}")
 

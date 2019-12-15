@@ -13,15 +13,15 @@ url_lineNotify = "https://notify-api.line.me/api/notify"
 def send_line(msg, token):
     """
     msgをlineに送信する
-    送信結果を文字列で返す
+    ステータスコードを返す
     """
     data_dict = {"message" : msg}
     data = urllib.parse.urlencode(data_dict).encode("utf-8")
     headers = {"Authorization" : f"Bearer {token}"}
     req = urllib.request.Request(url_lineNotify, data, headers)
     with urllib.request.urlopen(req) as res:
-        body = res.read()
-    return body.decode("utf-8")
+        status = res.getcode()
+    return status
 
 def main():
     parser = argparse.ArgumentParser(
