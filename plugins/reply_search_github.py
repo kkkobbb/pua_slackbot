@@ -5,9 +5,12 @@ from slackbot.bot import respond_to
 import plugins.search_github
 
 
+# $<ユーザ名>/<レポジトリ名> (最後に半角空白が必要)
 RE_REPO = re.compile(r'\$([^ /]+/[^ ]+) ')
+# %<検索する単語> (最後に半角空白が必要)
 RE_WORD = re.compile(r'%([^"]+) ')
 
+# メッセージの末尾に"??"がある場合に処理する
 @respond_to("[^?]+\?\?$")
 def reply_question(message):
     text = message.body["text"]
