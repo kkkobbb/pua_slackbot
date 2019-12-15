@@ -1,10 +1,6 @@
 # coding: utf-8
-import re
-
 from slackbot.bot import respond_to
-from slackbot.bot import listen_to
 from slackbot.bot import default_reply
-import plugins.search_github
 
 
 @default_reply()
@@ -17,23 +13,11 @@ def default_func(message):
 def reply_test(message):
     message.reply("起動中")
 
+# LAUNCH SV
+launch_sv_msg = """+hε 9α+ε vv;11 0pεη! ♪u$+ α rn0rnηε+...
+d0 rn￥ vε$+ & d0 ￥0uγ vε4+ == [ vv;η ]"""
 
-RE_REPO = re.compile(r'\$([^ /]+/[^ ]+) ')
-RE_WORD = re.compile(r'%([^"]+) ')
-
-@respond_to("[^?]+\?\?$")
-def reply_question(message):
-    text = message.body["text"]
-    m_repo = re.search(RE_REPO, text)
-    m_word = re.search(RE_WORD, text)
-    if m_repo is not None:
-        repo = m_repo.group(1)
-        if m_word is None:
-            word = "TODO"
-        else:
-            word = m_word.group(1)
-        msg = plugins.search_github.get_msg(repo, word)
-        message.reply(msg)
-    else:
-        message.reply("??")
+@respond_to("^LAUNCH SV$")
+def reply_echip_start(message):
+    message.reply(launch_sv_msg)
 

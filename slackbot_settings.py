@@ -1,6 +1,6 @@
+import os
 
-with open("api_token") as f:
-    API_TOKEN = f.read().strip()
+API_TOKEN = os.environ["PUA_TOKEN_SLACKBOT_API"]
 
 DEFAULT_REPLY = "ぷァ"
 
